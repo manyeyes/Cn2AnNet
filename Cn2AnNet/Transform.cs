@@ -93,7 +93,7 @@ namespace Cn2AnNet
                             {
                                 string fracResult = Regex.Replace(inputs, cnPattern,
                                     m => cn2an(m.Value, "smart").ToString());
-                                string[] parts = fracResult.Split("分之");
+                                string[] parts = fracResult.Split(new[] { "分之" }, StringSplitOptions.None);
                                 return $"{parts[1]}/{parts[0]}";
                             }
                             else
@@ -132,7 +132,7 @@ namespace Cn2AnNet
                         else if (subMode == "fraction")
                         {
                             string fracResult = Regex.Replace(inputs, @"\d+", m => an2cn(m.Value, "low"));
-                            string[] parts = fracResult.Split("/");
+                            string[] parts = fracResult.Split('/');
                             return $"{parts[1]}分之{parts[0]}";
                         }
                         else if (subMode == "celsius")
